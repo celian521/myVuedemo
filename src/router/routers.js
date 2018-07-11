@@ -2,8 +2,10 @@ const home = () =>
   import ('@/page/home');
 const hello = () =>
   import ('@/page/test/hello');
-  const vue = () =>
+const vue = () =>
   import ('@/page/vue');
+const list = () =>
+  import ('@/page/list');
 
 const routers = [{
     name: 'home',
@@ -19,8 +21,14 @@ const routers = [{
       title: 'HelloWorld'
     },
     component: hello
-  },
-  {
+  }, {
+    name: 'list',
+    path: '/list',
+    meta: {
+      title: 'list'
+    },
+    component: list
+  }, {
     name: 'vue',
     path: '/vue',
     meta: {

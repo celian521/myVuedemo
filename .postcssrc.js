@@ -9,7 +9,7 @@ module.exports = {
       browsers: ['iOS 6', '> 0.1%', 'android 2.1']
     },
     "postcss-pxtorem": {
-      rootValue: 75,
+      rootValue: 100,
       propWhiteList: [],
       selectorBlackList: [
         'minirefresh'
