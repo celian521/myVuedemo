@@ -6,6 +6,8 @@ const vue = () =>
   import ('@/page/vue');
 const list = () =>
   import ('@/page/list');
+const dialog = () =>
+  import ('@/page/dialog');
 
 const routers = [{
     name: 'home',
@@ -28,6 +30,13 @@ const routers = [{
       title: 'list'
     },
     component: list
+  }, {
+    name: 'dialog',
+    path: '/dialog',
+    meta: {
+      title: 'dialog'
+    },
+    component: dialog
   }, {
     name: 'vue',
     path: '/vue',
