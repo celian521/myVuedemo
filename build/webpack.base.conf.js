@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const vuxLoader = require('vux-loader');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -10,7 +11,7 @@ function resolve (dir) {
 
 
 
-module.exports = {
+module.exports = vuxLoader.merge({
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -79,4 +80,43 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   }
-}
+},{
+  plugins: [{
+          name: 'vux-ui'
+      },
+      {
+          name: 'duplicate-style',
+          // options: {
+          //   canPrint: true
+          // }
+      },
+      {
+          name: 'after-less-parser',
+          fn: function(source) {
+              if (this.resourcePath.replace(/\\/g, '/').indexOf('/vux/src/components') > -1) {
+                  console.log('convert px ', source);
+                  source = source.replace(/px/g, 'PX')
+              }
+              // 自定义的全局样式大部分不需要转换
+              if (this.resourcePath.replace(/\\/g, '/').indexOf('App.vue') > -1) {
+                  source = source.replace(/px/g, 'PX').replace(/-1PX/g, '-1px')
+              }
+              return source
+          }
+      },
+      {
+          name: 'style-parser',
+          fn: function(source) {
+              if (this.resourcePath.replace(/\\/g, '/').indexOf('/vux/src/components') > -1) {
+                  console.log('convert px ', source);
+                  source = source.replace(/px/g, 'PX')
+              }
+              // 避免转换1PX.less文件路径
+              if (source.indexOf('1PX.less') > -1) {
+                  source = source.replace(/1PX.less/g, '1px.less')
+              }
+              return source
+          }
+      }
+  ]
+});

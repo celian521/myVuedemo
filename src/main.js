@@ -22,6 +22,15 @@ Vue.prototype.$layer = layer(Vue);
 import Modal from '@/lib/Modal/index.js';
 Vue.use(Modal);
 
+import ('vux/src/styles/1px.less');
+import {
+  LoadingPlugin,
+  ConfirmPlugin,
+  ToastPlugin
+} from 'vux'
+// Vue.use(LoadingPlugin)
+// Vue.use(ConfirmPlugin)
+// Vue.use(ToastPlugin)
 ///////////////////////test end
 
 // VConsole 开发环境开启

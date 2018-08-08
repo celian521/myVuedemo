@@ -77,14 +77,9 @@
     transition: all 0.3s;
   }
   @keyframes bounce-in {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    -ms-transform: scale(2);
-    transform: scale(2);
+    /* transform: scale(2);
     opacity: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.3s; */
   }
   .kiko-confirm {
     position: fixed;
